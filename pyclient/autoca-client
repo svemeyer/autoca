@@ -56,6 +56,8 @@ def main():
 
   url = args[0] + WS_PATH + '?' + urllib.parse.urlencode(opts)
 
+
+  print("URL: {}".format(url))
   response = urllib.request.urlopen(url, context = context).read()
   payload = json.loads(response)
 

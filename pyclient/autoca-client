@@ -62,9 +62,14 @@ def main():
   payload = json.loads(response)
   print("Payload: {}".format(str(payload)))
 
-  f = os.open(key_file, os.O_TRUNC|os.O_CREAT|os.O_WRONLY, 0o600)
-  os.write(f, payload['key'].encode('ascii'))
-  os.close(f)
+#  f = os.open(key_file, os.O_TRUNC|os.O_CREAT|os.O_WRONLY, 0o600)
+#  os.write(f, payload['key'].encode('ascii'))
+#  os.close(f)
+
+  f = open(key_file, mode="w")
+  f.write(payload['key'])
+  f.close()
+  os.chmod(key_file, 0o600)
 
   f = os.open(cert_file, os.O_TRUNC|os.O_CREAT|os.O_WRONLY, 0o600)
   os.write(f, payload['cert'].encode('ascii'))

@@ -60,6 +60,7 @@ def main():
   print("URL: {}".format(url))
   response = urllib.request.urlopen(url, context = context).read()
   payload = json.loads(response)
+  print("Payload: {}".format(str(payload)))
 
   f = os.open(key_file, os.O_TRUNC|os.O_CREAT|os.O_WRONLY, 0o600)
   os.write(f, payload['key'].encode('ascii'))
